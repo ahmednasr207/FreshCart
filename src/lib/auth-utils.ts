@@ -2,8 +2,10 @@ import { cookies } from 'next/headers'
 import { decode } from 'next-auth/jwt'
 
 export async function getUserToken() {
+
+  const Tkensession=(process.env.NODE_ENV==="production" ? '__Secure-next-auth.session-token': "next-auth.session-token")
   const cookieStore = await cookies()
-  const tokenValue = cookieStore.get ("next-auth.session-token")?.value
+  const tokenValue = cookieStore.get (Tkensession)?.value
 
   if (!tokenValue) return null
 
@@ -18,8 +20,10 @@ export async function getUserToken() {
 
 
 export async function getUserId() {
+    const Tkensession=(process.env.NODE_ENV==="production" ? '__Secure-next-auth.session-token': "next-auth.session-token")
+
   const cookieStore = await cookies()
-  const tokenValue = cookieStore.get("next-auth.session-token")?.value
+  const tokenValue = cookieStore.get(Tkensession)?.value
 
   if (!tokenValue) return null
 

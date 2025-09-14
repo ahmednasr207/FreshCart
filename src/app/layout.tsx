@@ -1,16 +1,12 @@
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Navpar from "../_compnt/Navpar";
+import Footer from "../_compnt/Footer";
+import MyApp from "./_EXTINTIN/maseg";
+import UserProvider from '../UserProvider';
+import AppContextProvider from '../types/context'; 
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,15 +15,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className="antialiased flex flex-col min-h-screen justify-between w-full">
+        <UserProvider>
+<AppContextProvider>
+            <Navpar />
+            <main className="w-full min-h-screen">
+              {children}
+            </main>
+            <Footer />
+            <MyApp />
+</AppContextProvider>
+        </UserProvider>
       </body>
     </html>
   );

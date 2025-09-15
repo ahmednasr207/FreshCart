@@ -21,6 +21,8 @@ const {setcount}=useContext(AppContext)!
 
       getdata()
 
+      
+
  const sum = data?.data?.products?.reduce((total:number, item:{count:number}) => total += item.count, 0);
 
       setcount(sum);

@@ -4,11 +4,37 @@ import { useState } from 'react';
 import { addwishlist, DELETEwishlist } from '@/_api/Wishlist';
 import { Button } from '@/components/ui/button';
 import { toast } from 'react-hot-toast'
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function Wishlist({ productIdd }: { productIdd: string }) {
   const [isLiked, setIsLiked] = useState(false); 
+const {data ,status }=useSession()
+const routerr=useRouter();
+
 
   const toggleLike = async () => {
+
+if(status==='unauthenticated'){
+
+toast.error('Please sign in to continue');
+
+setTimeout(()=>{
+  
+toast.loading('You are being redirected to the login page...');
+
+},100)
+
+
+setTimeout(()=>{
+  
+routerr.push('/auth/signin')
+
+},3000)
+
+return
+}
+
     try {
       if (isLiked) {
         await DELETEwishlist(productIdd);

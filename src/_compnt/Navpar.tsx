@@ -15,6 +15,7 @@ export default function Navbar() {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const { count } = useContext(AppContext)!;
 
+
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Products', href: '/Products' },
@@ -22,7 +23,6 @@ export default function Navbar() {
     { name: 'Brands', href: '/brands' },
   ];
 
-  // دالة محسنة للكشف عن الرابط النشط
   const isLinkActive = (href: string) => {
     if (href === '/') {
       return pathname === '/';
@@ -78,7 +78,6 @@ export default function Navbar() {
           </ul>
         </div>
 
-        {/* العناصر على اليمين (المستخدم، عربة التسوق، إلخ) */}
         <div className="hidden lg:flex items-center gap-4">
           {status === 'authenticated' && (
             <>
@@ -95,19 +94,19 @@ export default function Navbar() {
                 Orders
               </Link>
               <Link
-                href="/cart"
-                className="flex items-center gap-1 px-3 py-2 text-black hover:text-gray-600 transition-colors"
-              >
-                <div className="relative">
-                  <ShoppingCartIcon className="w-5 h-5" />
-                  {count > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center">
-                      {count > 99 ? '99+' : count}
-                    </span>
-                  )}
-                </div>
-                <span>Cart</span>
-              </Link>
+  href="/cart"
+  className={`flex items-center gap-1 px-3 py-2 transition-colors ${linkStyle(isLinkActive('/cart'))}`}
+>
+  <div className="relative">
+    <ShoppingCartIcon className="w-5 h-5" />
+    {count > 0 && (
+      <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center">
+        {count > 99 ? '99+' : count}
+      </span>
+    )}
+  </div>
+  <span>Cart</span>
+</Link>
             </>
           )}
 
@@ -147,7 +146,6 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* زر القائمة للجوال */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="lg:hidden p-2 text-black hover:text-gray-600 transition-colors"

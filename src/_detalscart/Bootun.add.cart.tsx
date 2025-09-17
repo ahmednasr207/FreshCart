@@ -54,7 +54,7 @@ return
         e.stopPropagation()
         addCart(id)
       }}
-      className="bg-green-600 text-white rounded-3xl px-6 py-2 hover:bg-green-800"
+      className="bg-green-600 text-white w-[90%] rounded-3xl px-6 py-2 hover:bg-green-800"
     >
       Add product to cart
     </Button>

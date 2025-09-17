@@ -9,6 +9,7 @@ import Image from 'next/image';
 import LoadingScreen from '../app/loading';
 import Bootuncart from '../_detalscart/Bootun.add.cart';
 import Wishlist from '../_buttonwishlist/buttonwishlist';
+import Link from 'next/link';
 export default function SearchProduct() {
   const [allProducts, setAllProducts] = useState<InterfaceProducts[]>([]);
   const [query, setQuery] = useState<InterfaceProducts[]>([]);
@@ -59,13 +60,16 @@ if (loading) return <LoadingScreen />;
           <div key={product.id}>
             <div className="  w-full max-w-sm bg-white border border-gray-200 rounded-lg 
             shadow hover:shadow-lg transition-transform duration-300 hover:scale-[1.02] overflow-hidden cursor-pointer">
-              <Image
+             
+<Link href={`/prodactspciel/${product._id}`} className="block">
+             <Image
                 className="p-2 rounded-t-lg object-cover w-full h-full"
                 src={product.imageCover}
                 alt={product.title}
                 width={500}
                 height={300}
               />
+            </Link>
               <div className="px-5 pb-5">
                 <h5 className="text-xl font-semibold tracking-tight text-gray-900 mt-2 line-clamp-1">
                   {product.title}

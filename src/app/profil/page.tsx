@@ -30,13 +30,13 @@ import React from 'react'
 import { getuserorder } from '../../_api/order'
 import { getUserToken } from '@/lib/auth-utils'
 import Link from 'next/link'
+import Clientprofil from '@/-heart/_profil/client.prfil';
 
 export default async function Page() {
   const token = await getUserToken()
   const orders = await getuserorder()
 
   const firstOrder = orders[0] || null
-  const userInfo = firstOrder?.user || null
   const shipping = firstOrder?.shippingAddress || null
   const orderCount = orders.length
 
@@ -45,12 +45,8 @@ export default async function Page() {
       <div className="w-[80%] my-10">
         <h1 className="text-center mb-10 font-bold text-4xl text-blue-600">Profile</h1>
 
-        {/* User Info */}
-        <section className="bg-gray-100 rounded-xl p-6 shadow mb-6">
-          <h2 className="text-xl mb-4 text-gray-700 border-b-2 border-blue-500 pb-2 font-semibold">User Info</h2>
-          <p><span className="font-semibold">Name:</span> {userInfo?.name || 'N/A'}</p>
-          <p><span className="font-semibold">Email:</span> {userInfo?.email || 'N/A'}</p>
-        </section>
+       <Clientprofil />
+
 
         {shipping && (
           <section className="bg-gray-100 rounded-xl p-6 shadow mb-6">

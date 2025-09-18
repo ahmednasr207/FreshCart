@@ -14,7 +14,7 @@ export async function gatshipp(cartid: string, shippingAddress: ShippingAddress)
     throw new Error('Token error: User is not authenticated')
   }
 
-  const res = await fetch(`${process.env.NEXTAUTH_PUBLIC_URL}/api/v1/orders/checkout-session/${cartid}?${process.env.NEXTAUTH_LOCAL_URL}`, {
+  const res = await fetch(`${process.env.NEXTAUTH_PUBLIC_URL}/api/v1/orders/checkout-session/${cartid}?https://fresh-cart-five-iota.vercel.app/allorders`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
